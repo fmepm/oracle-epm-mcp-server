@@ -184,9 +184,11 @@ This is the exact same workflow a finance team does manually each month — now 
 
 This server was built as part of the demonstration of connecting an AI agent to Oracle EPM Cloud. For more Oracle EPM content, tutorials, and tools:
 
+- Video walkthrough: [Building an AI Agent for Oracle EPM Cloud](https://youtu.be/At4_ZIq2jBY)
 - Website: [fmepm.com](https://fmepm.com)
 - YouTube: [@fmepm](https://youtube.com/@fmepm)
 - LinkedIn: [Fred Mamadjanov](https://linkedin.com/in/fredmjvca)
+
 
 ---
 
