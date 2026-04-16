@@ -20,6 +20,20 @@ The server translates these natural language requests into Oracle EPM REST API c
 
 ---
 
+## 📺 Video Tutorials & Full Articles
+
+**Episode 2 — How I Built This**
+Building an AI agent for Oracle EPM Cloud using MCP and REST APIs.
+- Watch on YouTube: [youtu.be/At4_ZIq2jBY](https://youtu.be/At4_ZIq2jBY)
+- Full article on fmepm.com: [How to Connect Claude AI to Oracle EPM Cloud](https://fmepm.com/ai-agent-oracle-epm)
+
+**Episode 3 — How to Set Up (Step by Step)**
+Install and configure this MCP server in 5 minutes.
+- Watch on YouTube: [youtu.be/kgUDAKARk7c](https://youtu.be/kgUDAKARk7c)
+- Full setup guide on fmepm.com: [How to Set Up an AI Agent for Oracle EPM Cloud](https://fmepm.com/setup-ai-agent-oracle-epm)
+
+---
+
 ## Architecture
 
 ```
@@ -47,6 +61,8 @@ You (natural language) → Claude Desktop → MCP Protocol → This Server → O
 ### Prerequisites
 - Node.js 18+ installed ([download](https://nodejs.org))
 - Claude Desktop installed ([download](https://claude.ai/download))
+
+> **Need a video walkthrough?** Watch [Episode 3 on YouTube](https://youtu.be/kgUDAKARk7c) or read the [step-by-step guide on fmepm.com](https://fmepm.com/setup-ai-agent-oracle-epm).
 
 ### Step 1: Download and install
 
@@ -182,13 +198,16 @@ This is the exact same workflow a finance team does manually each month — now 
 
 ## About
 
-This server was built as part of the demonstration of connecting an AI agent to Oracle EPM Cloud. For more Oracle EPM content, tutorials, and tools:
+This server is part of an ongoing series on connecting AI agents to Oracle EPM Cloud. For more Oracle EPM content, tutorials, and tools:
 
-- Video walkthrough: [Building an AI Agent for Oracle EPM Cloud](https://youtu.be/At4_ZIq2jBY)
-- Website: [fmepm.com](https://fmepm.com)
-- YouTube: [@fmepm](https://youtube.com/@fmepm)
-- LinkedIn: [Fred Mamadjanov](https://linkedin.com/in/fredmjvca)
+- **Overview article:** [How to Connect Claude AI to Oracle EPM Cloud](https://fmepm.com/ai-agent-oracle-epm)
+- **Setup tutorial:** [How to Set Up an AI Agent for Oracle EPM Cloud — Step by Step](https://fmepm.com/setup-ai-agent-oracle-epm)
+- **All insights & articles:** [fmepm.com/insights](https://fmepm.com/insights)
+- **YouTube channel:** [@fmepm](https://youtube.com/@fmepm)
+- **Website:** [fmepm.com](https://fmepm.com)
+- **LinkedIn:** [Fred Mamadjanov](https://linkedin.com/in/fredmjvca)
 
+Work with Oracle EPM and want to discuss AI integration? [Book a Discovery Call](https://outlook.office.com/book/EPMDiscoveryCall30min@fmepm.com).
 
 ---
 
