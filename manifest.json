@@ -1,0 +1,127 @@
+{
+  "manifest_version": "0.3",
+  "name": "oracle-epm-cloud",
+  "display_name": "Oracle EPM Cloud",
+  "version": "2.0.0",
+  "description": "Connect Claude to Oracle EPM Cloud. Run business rules, export data, manage substitution variables, and automate month-end close through natural language.",
+  "long_description": "The Oracle EPM Cloud MCP server connects Claude (or any MCP-compatible client) to Oracle's Enterprise Performance Management Cloud via the official Planning REST APIs.\n\nInstead of manually running Postman calls, EPM Automate commands, or writing Groovy scripts, you can ask Claude to list applications, run business rules, export data slices, update substitution variables, and check job status — all through natural language.\n\nRuns in mock mode by default with realistic sample data so you can test the integration without a live EPM environment. Switch to live mode by providing your Oracle EPM Cloud credentials.\n\nUses Basic Authentication against the Oracle Planning REST API (/HyperionPlanning/rest). Same security model as the EPM Cloud UI — no elevated permissions, credentials stored in your OS keychain.\n\nBuilt by Fred Mamadjanov, Oracle ACE and EPM Solution Architect. Full documentation and tutorials at fmepm.com.",
+  "author": {
+    "name": "Fred Mamadjanov",
+    "email": "fred@fmepm.com",
+    "url": "https://fmepm.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fmepm/oracle-epm-mcp-server"
+  },
+  "homepage": "https://fmepm.com",
+  "documentation": "https://github.com/fmepm/oracle-epm-mcp-server#readme",
+  "support": "https://github.com/fmepm/oracle-epm-mcp-server/issues",
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/server/index.js"
+      ],
+      "env": {
+        "EPM_MODE": "${user_config.epm_mode}",
+        "EPM_BASE_URL": "${user_config.epm_base_url}",
+        "EPM_USERNAME": "${user_config.epm_username}",
+        "EPM_PASSWORD": "${user_config.epm_password}",
+        "EPM_APP_NAME": "${user_config.epm_app_name}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "get_api_version",
+      "description": "Discover which REST API versions your Oracle EPM Cloud environment supports. Run this first to confirm connectivity."
+    },
+    {
+      "name": "list_applications",
+      "description": "List all applications in the Oracle EPM Cloud environment — Planning, FCCS, PCM, and others."
+    },
+    {
+      "name": "get_substitution_variables",
+      "description": "Read all substitution variables for a given application. Useful for checking the current period, scenario, or rate version."
+    },
+    {
+      "name": "update_substitution_variable",
+      "description": "Update a substitution variable value. Use for month-end period roll-overs or scenario switches."
+    },
+    {
+      "name": "run_business_rule",
+      "description": "Execute a business rule (calculation script) in the EPM application. Returns a job ID that can be polled with check_job_status."
+    },
+    {
+      "name": "check_job_status",
+      "description": "Poll the status of a running job. Returns whether the job is still processing, completed successfully, or failed."
+    },
+    {
+      "name": "export_data_slice",
+      "description": "Export a slice of data from the EPM cube. Specify the POV and columns to retrieve."
+    }
+  ],
+  "keywords": [
+    "oracle",
+    "epm",
+    "planning",
+    "fccs",
+    "pbcs",
+    "finance",
+    "fpa",
+    "close",
+    "consolidation",
+    "business-rules"
+  ],
+  "license": "MIT",
+  "user_config": {
+    "epm_mode": {
+      "type": "string",
+      "title": "Mode",
+      "description": "Run in 'mock' mode with sample data (safe for testing) or 'live' mode against your real Oracle EPM Cloud environment. Start with 'mock' to explore the tools.",
+      "default": "mock",
+      "required": true
+    },
+    "epm_base_url": {
+      "type": "string",
+      "title": "EPM Base URL",
+      "description": "Your Oracle EPM Cloud URL. Example: https://epm-yourdomain.epm.us6.oraclecloud.com. Only needed in live mode.",
+      "default": "https://epm-demo.epm.us6.oraclecloud.com",
+      "required": false
+    },
+    "epm_username": {
+      "type": "string",
+      "title": "EPM Username",
+      "description": "Your Oracle EPM Cloud username in format: IdentityDomain.username (e.g., acmecorp.fred). Only needed in live mode.",
+      "required": false
+    },
+    "epm_password": {
+      "type": "string",
+      "title": "EPM Password",
+      "description": "Your Oracle EPM Cloud password. Stored securely in your OS keychain. Only needed in live mode. Note: accounts with MFA enabled cannot use Basic Auth — use a service account instead.",
+      "sensitive": true,
+      "required": false
+    },
+    "epm_app_name": {
+      "type": "string",
+      "title": "Application Name",
+      "description": "The name of your EPM application (e.g., Vision, VisionFCCS). Only needed in live mode.",
+      "default": "Vision",
+      "required": false
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=0.10.0",
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=16.0.0"
+    }
+  },
+  "privacy_policies": [
+    "https://fmepm.com/privacy"
+  ]
+}
