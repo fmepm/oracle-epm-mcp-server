@@ -26,11 +26,11 @@ const { z } = require("zod");
 
 // Configuration
 const CONFIG = {
-  mode: (process.env.EPM_MODE || "mock").toLowerCase(),
-  baseUrl: process.env.EPM_BASE_URL || "https://epm-demo.epm.us6.oraclecloud.com",
-  username: process.env.EPM_USERNAME || "",
-  password: process.env.EPM_PASSWORD || "",
-  appName: process.env.EPM_APP_NAME || "Vision",
+  mode: (process.env.EPM_MODE || "mock").trim().toLowerCase(),
+  baseUrl: (process.env.EPM_BASE_URL || "https://epm-demo.epm.us6.oraclecloud.com").trim().replace(/\/+$/, ""),
+  username: (process.env.EPM_USERNAME || "").trim(),
+  password: (process.env.EPM_PASSWORD || "").trim(),
+  appName: (process.env.EPM_APP_NAME || "Vision").trim(),
 };
 const IS_MOCK = CONFIG.mode === "mock";
 
