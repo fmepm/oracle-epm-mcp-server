@@ -2,7 +2,7 @@
 
 Connect Claude AI (or any MCP-compatible client) to Oracle EPM Cloud via REST APIs.
 
-Built by Fred Mamadjanov, Oracle ACE and EPM Solution Architect. More at [fmepm.com](https://fmepm.com).
+Built by Fred Mamadjanov, Oracle ACE Pro and EPM Solution Architect. More at [fmepm.com](https://fmepm.com).
 
 > **If this saved you time, please [star the repo](https://github.com/fmepm/oracle-epm-mcp-server). Stars are how other Oracle EPM folks find this work, and it's the clearest signal I have that it's useful.**
 
