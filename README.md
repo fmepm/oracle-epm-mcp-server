@@ -7,6 +7,13 @@ Built by Fred Mamadjanov, Oracle ACE Pro and EPM Solution Architect. More at [fm
 > **If this saved you time, please [star the repo](https://github.com/fmepm/oracle-epm-mcp-server). Stars are how other Oracle EPM folks find this work, and it's the clearest signal I have that it's useful.**
 
 ---
+## Before You Connect This to a Real System
+
+> **This demo illustrates a potential workflow only. Before connecting any AI tool, LLM, or MCP server to NSPB or other enterprise systems, organizations should obtain approval from their IT, security, and compliance teams and ensure adherence to internal data governance and security policies.**
+
+Mock mode exists so you can try everything with sample data and no credentials. Use it.
+
+---
 
 ## What This Does
 
@@ -152,6 +159,8 @@ Claude will use the `list_applications` tool and return the mock data.
 ---
 
 ## Switching to Live Mode (Real EPM Environment)
+
+Before you do this in a company environment, read the note at the top of this page: get approval from your IT, security, and compliance teams first.
 
 When you have access to an Oracle EPM Cloud environment, set these environment variables in your Claude Desktop config:
 
