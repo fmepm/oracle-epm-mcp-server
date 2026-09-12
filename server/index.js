@@ -31,7 +31,17 @@ const CONFIG = {
   username: (process.env.EPM_USERNAME || "").trim(),
   password: (process.env.EPM_PASSWORD || "").trim(),
   appName: (process.env.EPM_APP_NAME || "Vision").trim(),
+  writeAuthToken: (process.env.EPM_WRITE_AUTH_TOKEN || "").trim(),
 };
+
+// Authorization gate for tools that mutate EPM state (e.g. substitution variable updates).
+// Requires EPM_WRITE_AUTH_TOKEN to be configured and matched by the caller-supplied authToken.
+function authorizeWrite(authToken) {
+  if (!CONFIG.writeAuthToken || authToken !== CONFIG.writeAuthToken) {
+    return { content: [{ type: "text", text: "[UNAUTHORIZED] This operation requires a valid authToken. Set EPM_WRITE_AUTH_TOKEN on the server and pass the matching authToken parameter." }], isError: true };
+  }
+  return null;
+}
 const IS_MOCK = CONFIG.mode === "mock";
 
 // HTTP helper for LIVE mode
@@ -103,8 +113,10 @@ server.tool(
 server.tool(
   "run_business_rule",
   "Execute a business rule (calculation script) in the EPM application. Returns a job ID you can poll for completion.",
-  { ruleName: z.string().describe("Name of the business rule to run, e.g. Agg_AllData"), appName: z.string().optional().describe("Application name (default: Vision)") },
-  async ({ ruleName, appName }) => {
+  { ruleName: z.string().describe("Name of the business rule to run, e.g. Agg_AllData"), appName: z.string().optional().describe("Application name (default: Vision)"), authToken: z.string().describe("Authorization token for this privileged write operation (must match EPM_WRITE_AUTH_TOKEN configured on the server)") },
+  async ({ ruleName, appName, authToken }) => {
+    const unauthorized = authorizeWrite(authToken);
+    if (unauthorized) return unauthorized;
     const app = appName || CONFIG.appName;
     let result;
     if (IS_MOCK) {
@@ -156,8 +168,10 @@ server.tool(
 server.tool(
   "update_substitution_variable",
   "Update a substitution variable value. Example: roll CurrMonth from Mar to Apr during month-end close.",
-  { variableName: z.string().describe("Variable name, e.g. CurrMonth"), newValue: z.string().describe("New value, e.g. Apr"), planType: z.string().optional().describe("Plan type scope, default ALL"), appName: z.string().optional().describe("Application name (default: Vision)") },
-  async ({ variableName, newValue, planType, appName }) => {
+  { variableName: z.string().describe("Variable name, e.g. CurrMonth"), newValue: z.string().describe("New value, e.g. Apr"), planType: z.string().optional().describe("Plan type scope, default ALL"), appName: z.string().optional().describe("Application name (default: Vision)"), authToken: z.string().describe("Authorization token for this privileged write operation (must match EPM_WRITE_AUTH_TOKEN configured on the server)") },
+  async ({ variableName, newValue, planType, appName, authToken }) => {
+    const unauthorized = authorizeWrite(authToken);
+    if (unauthorized) return unauthorized;
     const app = appName || CONFIG.appName;
     const pt = planType || "ALL";
     let result;
