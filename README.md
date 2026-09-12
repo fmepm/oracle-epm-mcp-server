@@ -237,7 +237,7 @@ This server is part of an ongoing series on connecting AI agents to Oracle EPM C
 - **All insights and articles:** [fmepm.com/insights](https://fmepm.com/insights)
 - **YouTube channel:** [@fmepm](https://youtube.com/@fmepm)
 - **Website:** [fmepm.com](https://fmepm.com)
-- **LinkedIn:** [Fred Mamadjanov](https://linkedin.com/in/fredmjvca)
+- **LinkedIn:** [Fred Mamadjanov](https://linkedin.com/in/fmepm)
 
 Work with Oracle EPM and want to discuss AI integration? [Book a Discovery Call](https://outlook.office.com/book/EPMDiscoveryCall30min@fmepm.com).
 
