@@ -1,0 +1,1 @@
+> **This demo illustrates a potential workflow only. Before connecting any AI tool, LLM, or MCP server to NSPB or other enterprise systems, organizations should obtain approval from their IT, security, and compliance teams and ensure adherence to internal data governance and security policies.**

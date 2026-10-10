@@ -1,0 +1,22 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.fmepm/connect-core",
+  "title": "FMEPM Connect Core",
+  "description": "I connect your AI assistant to Oracle EPM through a local server, with a demo for trying the tools.",
+  "version": "2.0.0",
+  "repository": {
+    "url": "https://github.com/fmepm/oracle-epm-mcp-server",
+    "source": "github"
+  },
+  "websiteUrl": "https://github.com/fmepm/oracle-epm-mcp-server#readme",
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/fmepm/oracle-epm-mcp-server/releases/download/v2.0.0/oracle-epm-cloud-2.0.0.mcpb",
+      "fileSha256": "ac1dc0eb5f5f04c32d14017e36383bce531ae6be7ac77710e73255d97fdad5ce",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}
