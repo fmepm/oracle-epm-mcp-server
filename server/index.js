@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Oracle EPM Cloud MCP Server
+ * FMEPM Connect Core
  * ===========================
  * Built by Fred Mamadjanov (fmepm.com)
  *
@@ -14,7 +14,7 @@
  *
  * To switch to LIVE mode, set these environment variables:
  *   EPM_BASE_URL=https://epm-YOURDOMAIN.epm.REGION.oraclecloud.com
- *   EPM_USERNAME=IDENTITYDOMAIN.your_username
+ *   EPM_USERNAME=your_username
  *   EPM_PASSWORD=your_password
  *   EPM_APP_NAME=Vision
  *   EPM_MODE=live
@@ -34,22 +34,9 @@ const CONFIG = {
 };
 const IS_MOCK = CONFIG.mode === "mock";
 
-// HTTP helper for LIVE mode
-async function epmFetch(method, path, body) {
-  const fetch = require("node-fetch");
-  const url = CONFIG.baseUrl + path;
-  const auth = Buffer.from(CONFIG.username + ":" + CONFIG.password).toString("base64");
-  const opts = {
-    method,
-    headers: { Authorization: "Basic " + auth, "Content-Type": "application/json" },
-  };
-  if (body) opts.body = JSON.stringify(body);
-  const res = await fetch(url, opts);
-  const text = await res.text();
-  let data;
-  try { data = JSON.parse(text); } catch { data = { rawResponse: text }; }
-  return { status: res.status, data };
-}
+const { credentialsWarning } = require("./credentials.js");
+const { requestEpm } = require("./http.js");
+const epmFetch = (method, path, body) => requestEpm(CONFIG, method, path, body);
 
 // Mock responses based on actual Oracle EPM REST API documentation
 const MOCK = {
@@ -172,8 +159,10 @@ server.tool(
 
 // Start
 async function main() {
+  const warning = !IS_MOCK && credentialsWarning(CONFIG.baseUrl, CONFIG.username);
+  if (warning) console.error(warning);
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("Oracle EPM Cloud MCP Server started in " + (IS_MOCK ? "MOCK" : "LIVE") + " mode");
+  console.error("FMEPM Connect Core started in " + (IS_MOCK ? "MOCK" : "LIVE") + " mode");
 }
 main().catch((e) => { console.error("Failed:", e); process.exit(1); });

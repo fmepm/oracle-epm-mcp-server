@@ -1,10 +1,10 @@
 {
   "manifest_version": "0.3",
   "name": "oracle-epm-cloud",
-  "display_name": "Oracle EPM Cloud",
+  "display_name": "FMEPM Connect Core",
   "version": "2.0.0",
   "description": "Connect Claude to Oracle EPM Cloud. Run business rules, export data, manage substitution variables, and automate month-end close through natural language.",
-  "long_description": "The Oracle EPM Cloud MCP server connects Claude (or any MCP-compatible client) to Oracle's Enterprise Performance Management Cloud via the official Planning REST APIs.\n\nInstead of manually running Postman calls, EPM Automate commands, or writing Groovy scripts, you can ask Claude to list applications, run business rules, export data slices, update substitution variables, and check job status, all through natural language.\n\nRuns in mock mode by default with realistic sample data so you can test the integration without a live EPM environment. Switch to live mode by providing your Oracle EPM Cloud credentials.\n\nUses Basic Authentication against the Oracle Planning REST API (/HyperionPlanning/rest). Same security model as the EPM Cloud UI, no elevated permissions, credentials stored in your OS keychain.\n\nBuilt by Fred Mamadjanov, Oracle ACE Pro and EPM Solution Architect. Full documentation and tutorials at fmepm.com.",
+  "long_description": "FMEPM Connect Core connects Claude (or any MCP-compatible client) to Oracle's Enterprise Performance Management Cloud via the official Planning REST APIs.\n\nInstead of manually running Postman calls, EPM Automate commands, or writing Groovy scripts, you can ask Claude to list applications, run business rules, export data slices, update substitution variables, and check job status, all through natural language.\n\nRuns in mock mode by default with realistic sample data so you can test the integration without a live EPM environment. Switch to live mode by providing your Oracle EPM Cloud credentials.\n\nUses Basic Authentication against the Oracle Planning REST API (/HyperionPlanning/rest). Same security model as the EPM Cloud UI, no elevated permissions, credentials stored in your OS keychain.\n\nBuilt by Fred Mamadjanov, Oracle ACE Pro and EPM Solution Architect. Full documentation and tutorials at fmepm.com.",
   "author": {
     "name": "Fred Mamadjanov",
     "email": "fred@fmepm.com",
@@ -96,7 +96,7 @@
     "epm_username": {
       "type": "string",
       "title": "EPM Username",
-      "description": "Your Oracle EPM Cloud username in format: IdentityDomain.username (e.g., acmecorp.fred). Only needed in live mode.",
+      "description": "Enter your Oracle username without the cloud account name prefix. Oracle stops accepting that prefix in 26.11, on November 20, 2026 in production. Only needed in live mode.",
       "required": false
     },
     "epm_password": {
@@ -116,7 +116,11 @@
   },
   "compatibility": {
     "claude_desktop": ">=0.10.0",
-    "platforms": ["darwin", "win32", "linux"],
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
     "runtimes": {
       "node": ">=16.0.0"
     }

@@ -1,6 +1,8 @@
-# Oracle EPM Cloud MCP Server
+# FMEPM Connect Core
 
 Connect Claude AI (or any MCP-compatible client) to Oracle EPM Cloud via REST APIs.
+
+For the hosted product, use [FMEPM Connect](https://mcp.fmepm.com).
 
 Built by Fred Mamadjanov, Oracle ACE Pro and EPM Solution Architect. More at [fmepm.com](https://fmepm.com).
 
@@ -73,6 +75,8 @@ Two options. Pick the one that fits how you work.
 
 Available in v2.0.0 and later. Download the Desktop Extension, install it, done. No path editing, no JSON config file.
 
+The current released bundle still shows the old product name. This source change does not publish a new bundle.
+
 1. Download `oracle-epm-cloud-2.0.0.mcpb` from the [latest release](https://github.com/fmepm/oracle-epm-mcp-server/releases/latest).
 2. Open Claude Desktop. Go to Settings → Extensions → Advanced → Install Extension.
 3. Select the `.mcpb` file.
@@ -95,8 +99,8 @@ Use this if you want to read or modify the code.
 
 ```bash
 git clone https://github.com/fmepm/oracle-epm-mcp-server.git
-cd oracle-epm-mcp-server
-npm install
+cd oracle-epm-mcp-server/server
+npm ci
 ```
 
 **Step 2: Configure Claude Desktop**
@@ -173,7 +177,7 @@ When you have access to an Oracle EPM Cloud environment, set these environment v
       "env": {
         "EPM_MODE": "live",
         "EPM_BASE_URL": "https://epm-YOURDOMAIN.epm.REGION.oraclecloud.com",
-        "EPM_USERNAME": "IDENTITYDOMAIN.your_username",
+        "EPM_USERNAME": "your_username",
         "EPM_PASSWORD": "your_password",
         "EPM_APP_NAME": "Vision"
       }
@@ -186,7 +190,7 @@ Same 7 tools, now hitting your real environment.
 
 ### Authentication Note
 
-The REST APIs use Basic Authentication. Your username format must be `identitydomain.username`. This is the single most common mistake. If you get 401 errors, check this first.
+The REST APIs use Basic Authentication. Enter the username without the cloud account name prefix. Oracle stops accepting the prefixed format in 26.11, on November 20, 2026 in production. I warn when a prefix matches the account name in a recognized pod address; I never rewrite it.
 
 Accounts with multi-factor authentication (MFA) enabled cannot use Basic Auth. You'd need OAuth 2.0 instead, which isn't covered in this version.
 
@@ -212,7 +216,7 @@ This is the same workflow a finance team does manually each month. Now executabl
 | Error | Cause | Fix |
 |-------|-------|-----|
 | MCP tools not showing in Claude | Config path wrong | Check `claude_desktop_config.json` path is absolute |
-| 401 Unauthorized | Username format | Use `identitydomain.username`, not just username |
+| 401 Unauthorized | Username format | Enter the username without the cloud account name prefix |
 | 403 Forbidden | Insufficient permissions | User needs EPM admin or appropriate role |
 | Connection refused | Wrong URL | Check `EPM_BASE_URL` matches your environment |
 | ETIMEDOUT | Network/firewall | Verify you can reach the EPM URL from your machine |

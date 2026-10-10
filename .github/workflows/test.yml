@@ -1,0 +1,26 @@
+name: Test
+on:
+  pull_request:
+  push:
+    branches: ["codex/**"]
+permissions:
+  contents: read
+jobs:
+  test:
+    # Pinned until after the October 19 launch; move to Ubuntu 26 on purpose later.
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        node: [22, 24]
+    name: Node ${{ matrix.node }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+          cache-dependency-path: server/package-lock.json
+      - run: npm ci
+        working-directory: server
+      - run: npm test
+        working-directory: server

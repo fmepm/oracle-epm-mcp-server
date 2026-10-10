@@ -1,15 +1,27 @@
 {
   "name": "oracle-epm-mcp-server",
   "version": "2.0.0",
-  "description": "MCP Server for Oracle EPM Cloud — connect Claude and AI agents to Planning, FCCS, and PCM via REST APIs. Built by Fred Mamadjanov (fmepm.com).",
+  "description": "FMEPM Connect Core connects AI assistants to Oracle EPM through REST APIs.",
   "main": "index.js",
   "bin": {
     "oracle-epm-mcp": "./index.js"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "node --test test/*.test.js"
   },
-  "keywords": ["oracle", "epm", "mcp", "ai", "planning", "fccs", "pbcs", "finance", "fpa", "claude"],
+  "keywords": [
+    "oracle",
+    "epm",
+    "mcp",
+    "ai",
+    "planning",
+    "fccs",
+    "pbcs",
+    "finance",
+    "fpa",
+    "claude"
+  ],
   "author": "Fred Mamadjanov (https://fmepm.com)",
   "license": "MIT",
   "repository": {
