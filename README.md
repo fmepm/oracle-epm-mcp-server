@@ -90,8 +90,10 @@ Use this if you want to read or modify the code.
 
 **Prerequisites**
 
-- Node.js 18+ installed ([download](https://nodejs.org))
+- Node.js 24 LTS (recommended), or Node.js 22 LTS, installed ([download](https://nodejs.org))
 - Claude Desktop installed ([download](https://claude.ai/download))
+
+The source package and extension manifest require Node.js 22 or newer. CI tests Node.js 22 and 24; Node.js 18 and 20 are end-of-life and are not supported. Check your installed version with `node --version` before running `npm ci`.
 
 > **Need a video walkthrough?** Watch [Episode 3 on YouTube](https://youtu.be/kgUDAKARk7c) or read the [step-by-step guide on fmepm.com](https://fmepm.com/setup-ai-agent-oracle-epm).
 

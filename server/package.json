@@ -3,6 +3,9 @@
   "version": "2.0.0",
   "description": "FMEPM Connect Core connects AI assistants to Oracle EPM through REST APIs.",
   "main": "index.js",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "bin": {
     "oracle-epm-mcp": "./index.js"
   },
